@@ -83,7 +83,8 @@
             <div class="column">
                 <div class="intro-content__text">
                     <h3> Checking Apple store UAE </h3>
-                    <h1> iPhone 14 Pro Gold 128GB </h1>
+                    <h1> iPhone 14 Pro 128GB </h1>
+                    <h1 id="modelCode"> </h1>
                 </div> <!-- end intro-content__text -->
 
                 <div class="intro-content__notify">
@@ -110,6 +111,16 @@
                             <div class="counter__time seconds">
                                 00
                                 <span>S</span>
+                            </div>
+                        </div> <!-- end counter -->
+                    </div> <!-- end intro-content__counter-wrap -->
+
+                    <div class="intro-content__counter-wrap">
+                        <h4>Checked count</h4>
+
+                        <div class="counter">
+                            <div id="fetchCount">
+                                0
                             </div>
                         </div> <!-- end counter -->
                     </div> <!-- end intro-content__counter-wrap -->
@@ -174,11 +185,14 @@
 
         const freq = 3;
         const url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json";
-        const model = "MQ083AA/A"
+        const models = ["MQ083AA/A", "MQ023AA/FA"]
         const stores = ["R595", "R596", "R597", "R706"]
 
 
         $(document).ready(function () {
+
+            $('#modelCode').html(models.toString())
+
             $('#checkingFreq').html(`Check in every ${freq} seconds`)
 
             $('#btnStartWatch').click(function () {
@@ -196,26 +210,41 @@
             });
         });
 
+        var fetchCount = 0;
+        function incrementCount() {
+            $('#fetchCount').html(++fetchCount)
+        }
+
         function StartWatch() {
             var now = new Date();
             $('.counter__time.hours').html(`${now.getHours()} <span>H</span>`)
             $('.counter__time.minutes').html(`${now.getMinutes()} <span>M</span>`)
             $('.counter__time.seconds').html(`${now.getSeconds()} <span>S</span>`)
 
+
             fetch(url)
                 .then(function (response) {
                     return response.json();
                 }).then(function (data) {
-                    for (i = 0; i < stores.length; i++) {
-                        if (data.stores[stores[i]][model].availability.unlocked == true || data.stores[stores[i]][model].availability.contract == true) {
-                            $('#btnReserve').show();
-                            //playSound(); // Play first time
-                            beep(5000, 2, function () {
-                                button.disabled = false;
-                            });
-                            break;
+
+                    incrementCount();
+
+                    for (st = 0; st < stores.length; st++) {
+                        for (md = 0; md < models.length; md++) {
+                            if (data.stores[stores[st]][models[md]]?.availability.unlocked == true) {
+                                $('#btnReserve').show();
+                                //playSound(); // Play first time
+                                beep(5000, 2, function () {
+                                    button.disabled = false;
+                                });
+                                break;
+                            }
                         }
                     }
+                })
+                .catch((e) => {
+                    console.log(e);
+                    $('#fetchCount').html("Error in fetch")
                 });
         }
 
