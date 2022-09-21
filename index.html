@@ -52,7 +52,7 @@
 
         <div class="header-logo">
             <a class="site-logo" href="index.html">
-                np
+                Nishad Pathoor
             </a>
         </div>
 
@@ -128,7 +128,7 @@
 
 
             </div> <!-- end column -->
-
+            <button type="button" id="btnsndtest">Test sound</button>
         </div> <!--  end intro-content -->
     </section> <!-- end s-intro -->
 
@@ -172,7 +172,7 @@
             };
         })();
 
-        const freq = 5;
+        const freq = 3;
         const url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json";
         const model = "MQ083AA/A"
         const stores = ["R595", "R596", "R597", "R706"]
@@ -187,6 +187,13 @@
                 setInterval(StartWatch, freq * 1000);
             });
 
+            $('#btnsndtest').click(function () {
+                var button = this;
+                button.disabled = true;
+                beep(1000, 2, function () {
+                    button.disabled = false;
+                });
+            });
         });
 
         function StartWatch() {
@@ -200,7 +207,7 @@
                     return response.json();
                 }).then(function (data) {
                     for (i = 0; i < stores.length; i++) {
-                        if (data.stores[stores[i]][model].availability.unlocked == true) {
+                        if (data.stores[stores[i]][model].availability.unlocked == true || data.stores[stores[i]][model].availability.contract == true) {
                             $('#btnReserve').show();
                             //playSound(); // Play first time
                             beep(5000, 2, function () {
