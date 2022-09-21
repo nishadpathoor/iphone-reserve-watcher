@@ -200,7 +200,7 @@
                     return response.json();
                 }).then(function (data) {
                     for (i = 0; i < stores.length; i++) {
-                        if (data.stores[stores[i]][model].availability.unlocked == false) {
+                        if (data.stores[stores[i]][model].availability.unlocked == true) {
                             $('#btnReserve').show();
                             //playSound(); // Play first time
                             beep(5000, 2, function () {
