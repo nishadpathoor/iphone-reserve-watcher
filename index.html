@@ -1,260 +1,426 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en" class="dark">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iPhone Spotter - nexdae.com </title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!--- basic page needs
-    ================================================== -->
-    <meta charset="utf-8">
-    <title>Nishad - iphone reserve</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <style>
+        @font-face {
+            font-family: 'SF Pro Text';
+            src: url('./fonts/SF-Pro-Rounded-Regular.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
 
-    <!-- mobile specific metas
-    ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+        @font-face {
+            font-family: 'SF Pro Text';
+            src: url('./fonts/SF-Pro-Text-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
 
-    <!-- CSS
-    ================================================== -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/main.css">
+        body {
+            font-family: 'SF Pro Text', sans-serifx;
+        }
+    </style>
 
-    <!-- script
-    ================================================== -->
-    <script src="js/modernizr.js"></script>
-    <script defer src="js/fontawesome/all.min.js"></script>
+    <script defer>
+        // Dark mode toggle with localStorage persistence
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     const htmlElement = document.documentElement;
+        //     const darkModeToggle = document.getElementById('dark-mode-toggle');
 
-    <!-- favicons
-    ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
+        //     // Check for saved user preference
+        //     if (localStorage.getItem('theme') === 'dark') {
+        //         htmlElement.classList.add('dark');
+        //     } else {
+        //         htmlElement.classList.remove('dark');
+        //     }
 
+        //     darkModeToggle.addEventListener('click', function () {
+        //         htmlElement.classList.toggle('dark');
+        //         if (htmlElement.classList.contains('dark')) {
+        //             localStorage.setItem('theme', 'dark');
+        //         } else {
+        //             localStorage.removeItem('theme');
+        //         }
+        //     });
+        // });
+
+        // Menu toggle for mobile
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Chat window toggle
+        function toggleChatWindow() {
+            const chatWindow = document.getElementById('chat-window');
+            chatWindow.classList.toggle('hidden');
+        }
+    </script>
 </head>
 
-<body id="top">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all flex flex-col min-h-screen">
 
-    <!-- preloader
-    ================================================== -->
-    <div id="preloader">
-        <div id="loader" class="dots-fade">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
+    <!-- Header with Dark Mode Toggle -->
+    <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-lg font-semibold text-gray-900 dark:text-gray-100">iPhone Spotter</div>
 
-    <!-- site header
-    ================================================== -->
-    <header class="s-header">
+            <!-- Hamburger Icon for Mobile -->
+            <div class="block lg:hidden">
+                <button onclick="toggleMenu()" class="text-gray-600 dark:text-gray-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
 
-        <div class="header-logo">
-            <a class="site-logo" href="index.html">
-                Nishad Pathoor
-            </a>
-        </div>
-
-        <div class="header-email">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path
-                    d="M0 12l11 3.1 7-8.1-8.156 5.672-4.312-1.202 15.362-7.68-3.974 14.57-3.75-3.339-2.17 2.925v-.769l-2-.56v7.383l4.473-6.031 4.527 4.031 6-22z" />
-            </svg>
-            <a href="mailto:#0">nishadpathoor@gmail.com</a>
-        </div>
-
-    </header> <!-- end s-header -->
-
-
-    <!-- intro
-    ================================================== -->
-    <section>
-
-        <div class="intro-slider">
-            <div class="intro-slider-img" style="background-image: url(images/iphone14.jpg);"></div>
+            <!-- Navigation Links for Desktop -->
+            <nav class="hidden lg:flex space-x-4">
+                <a href="mailto:nishadpathoor@gmail.com"
+                    class="text-gray-600 hover:text-gray-900 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path
+                            d="M0 12l11 3.1 7-8.1-8.156 5.672-4.312-1.202 15.362-7.68-3.974 14.57-3.75-3.339-2.17 2.925v-.769l-2-.56v7.383l4.473-6.031 4.527 4.031 6-22z" />
+                    </svg>
+                    Contact us
+                </a>
+            </nav>
         </div>
 
-        <div class="grid-overlay">
-            <div></div>
-        </div>
+        <!-- Mobile Menu -->
+        <nav id="mobile-menu" class="lg:hidden hidden">
+            <div class="px-6 py-2 space-y-2">
+                <a href="mailto:nishadpathoor@gmail.com"
+                    class="text-gray-600 hover:text-gray-900 flex items-center text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+                        <path
+                            d="M0 12l11 3.1 7-8.1-8.156 5.672-4.312-1.202 15.362-7.68-3.974 14.57-3.75-3.339-2.17 2.925v-.769l-2-.56v7.383l4.473-6.031 4.527 4.031 6-22z" />
+                    </svg>
+                    Contact us
+                </a>
+            </div>
+        </nav>
+    </header>
 
-        <div class="row intro-content">
-            <div class="column">
-                <div class="intro-content__text">
-                    <h3> Checking Apple store UAE </h3>
-                    <h1> iPhone 14 Pro 128GB </h1>
-                    <h1 id="modelCode"> </h1>
-                </div> <!-- end intro-content__text -->
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10 flex-grow">
+        <!-- Hero Section -->
+        <section id="home" class="text-center">
+            <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">Apple store UAE</h1>
+        </section>
 
-                <div class="intro-content__notify">
-                    <button type="button" class="btn--stroke btn--small modal-trigger" id="btnStartWatch">
-                        Start Watching
+
+        <!-- Services Section -->
+        <section id="services" class="mt-12">
+            <!-- <h2 class="text-2xl font-semibold text-gray-900 text-center mb-4">Our Services</h2> -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 text-center">
+
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Last checking was in</h3>
+                    <div class="text-3xl font-medium  mt-4">
+                        <span id="hour">00</span>:<span id="minute">00</span>:<span id="seconds">00</span>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Checked count</h3>
+                    <div class="text-5xl font-medium  mt-4" id="fetchCount">0</div>
+                </div>
+
+                <div class="p-6 bg-white shadow-md rounded-md text-left" id="storeInputTile">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Select store</h3>
+                    <span class="block mb-2">
+                        <input type="checkbox" id="checkbox3" class="mr-2" data-code="R597">Dubai Mall, Dubai
+                    </span>
+                    <span class="block mb-2">
+                        <input type="checkbox" id="checkbox2" class="mr-2" data-code="R596">Mall of the Emirates, Dubai
+                    </span>
+                    <span class="block mb-2">
+                        <input type="checkbox" id="checkbox1" class="mr-2" data-code="R595"> Apple Yas Mall, Abu Dhab
+                    </span>
+                    <span class="block mb-2">
+                        <input type="checkbox" id="checkbox3" class="mr-2" data-code="R706">Al Maryah Island, Abu Dhab
+                    </span>
+                </div>
+
+
+                <div class="p-6 bg-white shadow-md rounded-md text-left" id="modelInputTile">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">iPhone Model watch list</h3>
+
+                    <div class="flex-grow overflow-y-auto mb-4">
+                        <h3 class="text-lg font-semibold"> <span id="hint" class="text-blue-500 cursor-pointer hover:underline">How to find model number?</span>
+                        </h3>
+                        <ul id="itemList" class="list-disc list-inside mt-2"></ul>
+                    </div>
+
+                    <div class="flex">
+                        <input type="text" id="itemInput" class="border rounded-l p-2 flex-grow"
+                            placeholder="iphone model number">
+                        <button id="btnAdd" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600">
+                            Add
+                        </button>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-white shadow-md rounded-md sm:col-span-2 lg:col-span-1">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Start Watching</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-6">This will check iphone every 3 sec</p>
+
+
+                    <button id="btnStart"
+                        class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
+                        Start
                     </button>
                 </div>
 
-                <div class="intro-content__bottom">
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Test sound</h3>
+                    <button id="btnTest"
+                        class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
+                        Test Sound
+                    </button>
+                </div> 
+            </div>
+        </section>
 
-                    <div class="intro-content__counter-wrap">
-                        <h4 id="checkingFreq">Check in every n seconds</h4>
-                        <h4>Last checkking was in</h4>
-
-                        <div class="counter">
-                            <div class="counter__time hours">
-                                00
-                                <span>H</span>
-                            </div>
-                            <div class="counter__time minutes">
-                                00
-                                <span>M</span>
-                            </div>
-                            <div class="counter__time seconds">
-                                00
-                                <span>S</span>
-                            </div>
-                        </div> <!-- end counter -->
-                    </div> <!-- end intro-content__counter-wrap -->
-
-                    <div class="intro-content__counter-wrap">
-                        <h4>Checked count</h4>
-
-                        <div class="counter">
-                            <div id="fetchCount">
-                                0
-                            </div>
-                        </div> <!-- end counter -->
-                    </div> <!-- end intro-content__counter-wrap -->
-
-                    <div class="intro-content__notify">
-                        <button type="button" class="btn--stroke btn--small modal-trigger" id="btnReserve"
-                            style="display: none;"
-                            onclick="location.href='https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability?iUP=N';">
-                            Reserve Now
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                                <path d="M24 12l-9-9v7h-15v4h15v7z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div> <!-- end intro-content__bottom -->
+    <div id="gifSection" class=" bg-white p-6 rounded shadow-md mt-5">
+        <h3 class="text-lg font-semibold mb-4">How to find iPhone model number?</h3>
+        <img src="/images/how-to.png" alt="Hint GIF" class="w-full max-w-4xl">
+        <img src="/images/how-to.gif" alt="Hint GIF" class="w-full max-w-4xl">
+    </div>
 
 
-            </div> <!-- end column -->
-            <button type="button" id="btnsndtest">Test sound</button>
-        </div> <!--  end intro-content -->
-    </section> <!-- end s-intro -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-gray-800 shadow-inner mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-600 dark:text-gray-300">
+            &copy; 2024 nexdae.com. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+
+<!-- JavaScript -->
+<script>
+
+    var beep = (function () {
+        var ctxClass = window.audioContext || window.AudioContext || window.AudioContext || window.webkitAudioContext
+        var ctx = new ctxClass();
+        return function (duration, type, finishedCallback) {
+
+            duration = +duration;
+
+            // Only 0-4 are valid types.
+            type = (type % 5) || 0;
+
+            if (typeof finishedCallback != "function") {
+                finishedCallback = function () { };
+            }
+
+            var osc = ctx.createOscillator();
+
+           // osc.type = type;
+            osc.type = "sine";
+
+            osc.connect(ctx.destination);
+            if (osc.noteOn) osc.noteOn(0);
+            if (osc.start) osc.start();
+
+            setTimeout(function () {
+                if (osc.noteOff) osc.noteOff(0);
+                if (osc.stop) osc.stop();
+                finishedCallback();
+            }, duration);
+
+        };
+    })();
+
+    let isRunning = false;
+    let intervalId;
+    let freq = 3;
+    let models = [];
+    let stores = [];
+    const url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json";
 
 
-    <!-- Java Script
-    ================================================== -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script>
+    $(document).ready(function () {
 
-        var beep = (function () {
-            var ctxClass = window.audioContext || window.AudioContext || window.AudioContext || window.webkitAudioContext
-            var ctx = new ctxClass();
-            return function (duration, type, finishedCallback) {
-
-                duration = +duration;
-
-                // Only 0-4 are valid types.
-                type = (type % 5) || 0;
-
-                if (typeof finishedCallback != "function") {
-                    finishedCallback = function () { };
-                }
-
-                var osc = ctx.createOscillator();
-
-                osc.type = type;
-                //osc.type = "sine";
-
-                osc.connect(ctx.destination);
-                if (osc.noteOn) osc.noteOn(0);
-                if (osc.start) osc.start();
-
-                setTimeout(function () {
-                    if (osc.noteOff) osc.noteOff(0);
-                    if (osc.stop) osc.stop();
-                    finishedCallback();
-                }, duration);
-
-            };
-        })();
-
-        const freq = 3;
-        const url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json";
-        const models = ["MPXV3AA/FA", "MQ0G3AA/FA"]
-        const stores = ["R595", "R596", "R597", "R706"]
-
-
-        $(document).ready(function () {
-
-            $('#modelCode').html(models.toString())
-
-            $('#checkingFreq').html(`Check in every ${freq} seconds`)
-
-            $('#btnStartWatch').click(function () {
-                var button = this;
-                button.hidden = true;
-                setInterval(StartWatch, freq * 1000);
+        $('#hint').click(function() {
+                // Scroll to the GIF section
+                $('html, body').animate({
+                    scrollTop: $(document).height() // Scroll to the full document height
+                }, 1000);
+            });
+            
+        $('#btnAdd').click(function () {
+            const itemValue = $('#itemInput').val().trim();
+            if (itemValue) {
+                models.push(itemValue);
+                $('#itemInput').val(''); // Clear input field
+                updateItemList();
+            }
+            SaveData();
+        });
+            // Remove item from the list
+            $('#itemList').on('click', '.removeButton', function() {
+                const itemText = $(this).siblings('span').text(); // Get the text of the item
+                models = models.filter(item => item !== itemText); // Remove item from array
+                $(this).parent('li').remove();
+                SaveData();
             });
 
-            $('#btnsndtest').click(function () {
-                var button = this;
-                button.disabled = true;
-                beep(1000, 2, function () {
-                    button.disabled = false;
-                });
+        $('#btnStart').click(function () {
+
+            if(stores.length == 0 || models.length == 0)
+        {
+            alert('Please select atleast one store and model number to began')
+            return;
+        }
+
+            let blue = "bg-blue-600 dark:bg-blue-500 hover:bg-blue-500 dark:hover:bg-blue-400"
+            let red = "bg-red-600 dark:bg-red-500 hover:bg-red-500 dark:hover:bg-red-400"
+
+            if (isRunning == false) {
+                LockUserInput(true);
+                $(this).text('Stop').removeClass(blue).addClass(red);
+                isRunning = true;
+                intervalId = setInterval(StartWatch, freq * 1000);
+            }
+            else if (isRunning == true) {
+                LockUserInput(false);
+                $(this).text('Start').removeClass(red).addClass(blue);
+                isRunning = false;
+                clearInterval(intervalId);
+            }
+            SaveData();
+        });
+
+        $('#btnTest').click(function () {
+            var button = this;
+            button.disabled = true;
+            beep(1000, 2, function () {
+                button.disabled = false;
             });
         });
 
-        var fetchCount = 0;
-        function incrementCount() {
-            $('#fetchCount').html(++fetchCount)
+        $('#storeInputTile input[type="checkbox"]').click(function () {
+            stores = []
+            $('#storeInputTile input[type="checkbox"]:checked').each(function () {
+                stores.push($(this).data('code'));
+            });
+            SaveData();
+        });
+
+
+        LoadData();
+        updateStoreData();
+        updateItemList();
+    });
+
+    function SaveData() {
+
+        let _data = {
+            models,
+            stores
+        }
+        localStorage.setItem('nexdae', JSON.stringify(_data));
+    }
+
+    function LoadData() {
+        let _data = localStorage.getItem('nexdae')
+        if (_data) {
+            var obj = JSON.parse(_data);
+            models = obj.models
+            stores = obj.stores
         }
 
-        function StartWatch() {
-            var now = new Date();
-            $('.counter__time.hours').html(`${now.getHours()} <span>H</span>`)
-            $('.counter__time.minutes').html(`${now.getMinutes()} <span>M</span>`)
-            $('.counter__time.seconds').html(`${now.getSeconds()} <span>S</span>`)
+    }
+
+    function LockUserInput(val) {
+        if (val == true) {
+
+            $('#storeInputTile').addClass('bg-gray-200').prop('disabled', true);
+            $('#modelInputTile').addClass('bg-gray-200').prop('disabled', true);
+            $('#itemInput').addClass('bg-gray-100').prop('disabled', true);
+            $('#btnAdd').addClass('bg-gray-200 cursor-not-allowed').prop('disabled', true);
+        }
+        else if (val == false) {
+
+            $('#storeInputTile').removeClass('bg-gray-200').prop('disabled', false);
+            $('#modelInputTile').removeClass('bg-gray-200').prop('disabled', false);
+            $('#itemInput').removeClass('bg-gray-100').prop('disabled', false);
+            $('#btnAdd').removeClass('bg-gray-200 cursor-not-allowed').prop('disabled', false);
+        }
+    }
+
+    function updateStoreData() {
+        $('#storeInputTile input[type="checkbox"]').each(function () {
+            $(this).prop('checked', stores.includes($(this).data('code')));
+        });
+    }
+
+    function updateItemList() {
+        $('#itemList').empty(); // Clear current list
+        models.forEach(function (item) {
+                    $('#itemList').append(`
+                        <li class="flex items-center justify-between mb-2">
+                            <span>${item}</span>
+                            <button class="removeButton text-red-500 hover:text-red-700">X</button>
+                        </li>
+                    `);
+        });
+    }
+
+    var fetchCount = 0;
+    function incrementCount() {
+        $('#fetchCount').html(++fetchCount)
+    }
+
+    function StartWatch() {
+
+        var now = new Date();
+        $('#hour').html(now.getHours())
+        $('#minute').html(now.getMinutes())
+        $('#seconds').html(now.getSeconds())
 
 
-            fetch(url)
-                .then(function (response) {
-                    return response.json();
-                }).then(function (data) {
+        fetch(url)
+            .then(function (response) {
+                return response.json();
+            }).then(function (data) {
 
-                    incrementCount();
+                incrementCount();
 
-                    for (st = 0; st < stores.length; st++) {
-                        for (md = 0; md < models.length; md++) {
-                            if (data.stores[stores[st]][models[md]]?.availability.unlocked == true) {
-                                $('#btnReserve').show();
-                                //playSound(); // Play first time
-                                beep(5000, 2, function () {
-                                    button.disabled = false;
-                                });
-                                break;
-                            }
+                for (st = 0; st < stores.length; st++) {
+                    for (md = 0; md < models.length; md++) {
+                        if (data.stores[stores[st]][models[md]]?.availability.unlocked == true) {
+                            $('#btnReserve').show();
+                            //playSound(); // Play first time
+                            beep(5000, 2, function () {
+                                button.disabled = false;
+                            });
+                            break;
                         }
                     }
-                })
-                .catch((e) => {
-                    console.log(e);
-                    $('#fetchCount').html("Error in fetch")
-                });
-        }
+                }
+            })
+            .catch((e) => {
+                console.log(e);
+                $('#fetchCount').html("Error in fetch")
+            });
+    }
 
-        var playSound = (function beep() {
-            var snd = new Audio("data:audio/wav;base64,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qJrx4KOQjahZxWbcZgztj2c49nKmkId44S71j0c8eV9yDK6uPRzx5X18eDvjvQ6yKo9ZSS6l//8elePK/Lf//IInrOF/FvDoADYAGBMGb7FtErm5MXMlmPAJQVgWta7Zx2go+8xJ0UiCb8LHHdftWyLJE0QIAIsI+UbXu67dZMjmgDGCGl1H+vpF4NSDckSIkk7Vd+sxEhBQMRU8j/12UIRhzSaUdQ+rQU5kGeFxm+hb1oh6pWWmv3uvmReDl0UnvtapVaIzo1jZbf/pD6ElLqSX+rUmOQNpJFa/r+sa4e/pBlAABoAAAAA3CUgShLdGIxsY7AUABPRrgCABdDuQ5GC7DqPQCgbbJUAoRSUj+NIEig0YfyWUho1VBBBA//uQZB4ABZx5zfMakeAAAAmwAAAAF5F3P0w9GtAAACfAAAAAwLhMDmAYWMgVEG1U0FIGCBgXBXAtfMH10000EEEEEECUBYln03TTTdNBDZopopYvrTTdNa325mImNg3TTPV9q3pmY0xoO6bv3r00y+IDGid/9aaaZTGMuj9mpu9Mpio1dXrr5HERTZSmqU36A3CumzN/9Robv/Xx4v9ijkSRSNLQhAWumap82WRSBUqXStV/YcS+XVLnSS+WLDroqArFkMEsAS+eWmrUzrO0oEmE40RlMZ5+ODIkAyKAGUwZ3mVKmcamcJnMW26MRPgUw6j+LkhyHGVGYjSUUKNpuJUQoOIAyDvEyG8S5yfK6dhZc0Tx1KI/gviKL6qvvFs1+bWtaz58uUNnryq6kt5RzOCkPWlVqVX2a/EEBUdU1KrXLf40GoiiFXK///qpoiDXrOgqDR38JB0bw7SoL+ZB9o1RCkQjQ2CBYZKd/+VJxZRRZlqSkKiws0WFxUyCwsKiMy7hUVFhIaCrNQsKkTIsLivwKKigsj8XYlwt/WKi2N4d//uQRCSAAjURNIHpMZBGYiaQPSYyAAABLAAAAAAAACWAAAAApUF/Mg+0aohSIRobBAsMlO//Kk4soosy1JSFRYWaLC4qZBYWFRGZdwqKiwkNBVmoWFSJkWFxX4FFRQWR+LsS4W/rFRb/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////VEFHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAU291bmRib3kuZGUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMjAwNGh0dHA6Ly93d3cuc291bmRib3kuZGUAAAAAAAAAACU=");
-            return function () {
-                snd.play();
-            }
-        })();
 
-    </script>
+</script>
 
-</body>
+</html>

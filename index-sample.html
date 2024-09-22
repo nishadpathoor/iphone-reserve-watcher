@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Simple Tailwind Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-lg font-semibold text-blue-600">My Simple Site</div>
+            <nav class="space-x-4">
+                <a href="#home" class="text-gray-600 hover:text-blue-600">Home</a>
+                <a href="#about" class="text-gray-600 hover:text-blue-600">About</a>
+                <a href="#services" class="text-gray-600 hover:text-blue-600">Services</a>
+                <a href="#contact" class="text-gray-600 hover:text-blue-600">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-10">
+        <!-- Hero Section -->
+        <section id="home" class="text-center">
+            <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to My Website</h1>
+            <p class="text-gray-700 mb-6">A lightweight and responsive website built with Tailwind CSS</p>
+            <a href="#about" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Learn More</a>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mt-12 text-center">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Us</h2>
+            <p class="text-gray-700 leading-relaxed">
+                We specialize in building lightweight, responsive websites that provide an excellent user experience. Our goal is to help businesses establish a strong online presence.
+            </p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="mt-12">
+            <h2 class="text-2xl font-semibold text-gray-900 text-center mb-4">Our Services</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Web Development</h3>
+                    <p class="text-gray-600">We create modern, fast, and secure websites for businesses of all sizes.</p>
+                </div>
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">SEO Optimization</h3>
+                    <p class="text-gray-600">Our SEO services help you rank higher in search engine results.</p>
+                </div>
+                <div class="p-6 bg-white shadow-md rounded-md">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Consulting</h3>
+                    <p class="text-gray-600">We provide expert advice to help you grow your online presence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mt-12 text-center">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Contact Us</h2>
+            <p class="text-gray-700 mb-4">We would love to hear from you! Feel free to reach out to us.</p>
+            <a href="mailto:info@example.com" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Get in Touch</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-600">
+            &copy; 2024 My Simple Site. All Rights Reserved.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Scroll to GIF Example</title>
+</head>
+<body class="bg-gray-100">
+
+    <div class="bg-white p-6 rounded shadow-md">
+        <h2 class="text-lg font-semibold mb-4">
+            Title with Hint 
+            <span id="hint" class="text-blue-500 cursor-pointer hover:underline">Click for a hint!</span>
+        </h2>
+        
+        <p class="mb-4">Scroll down to see the GIF at the bottom of the page.</p>
+    </div>
+
+    <div class="h-[1200px] bg-gray-200 p-4">
+        <!-- Placeholder for scrollable content -->
+        <p>Some content here...</p>
+    </div>
+
+    <div id="gifSection" class="hidden bg-white p-6 rounded shadow-md">
+        <h3 class="text-lg font-semibold mb-4">Here's your GIF!</h3>
+        <img src="https://media.giphy.com/media/3o6Zt8oG4eI8p3XG6U/giphy.gif" alt="Hint GIF" class="w-full max-w-md">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#hint').click(function() {
+                // Scroll to the GIF section
+                $('html, body').animate({
+                    scrollTop: $('#gifSection').offset().top
+                }, 1000, function() {
+                    // Show the GIF section after scrolling
+                    $('#gifSection').removeClass('hidden');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
