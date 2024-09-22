@@ -139,7 +139,7 @@
 
                 <div class="p-6 bg-white shadow-md rounded-md text-center hidden" id="reserveTile">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2" id="reserveText">Got at</h3>
-                    <button id="btnAdd"
+                    <button id="btnFound" onclick="location.href='https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability?iUP=N';"
                         class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
                         Reserve Now
                     </button>
@@ -405,9 +405,7 @@
             }).then(function (data) {
 
                 incrementCount();
-
-                debugger
-
+                
                 for (st = 0; st < stores.length; st++) {
                     for (md = 0; md < models.length; md++) {
                         if (data.stores[stores[st]][models[md]]?.availability.unlocked == true) {
@@ -432,9 +430,7 @@
         $('#reserveTile').removeClass("hidden");
         $('#reserveText').html(`Found One for ${md} at ${st} on ${localTime}`);
         //playSound(); // Play first time
-        beep(5000, 2, function () {
-            button.disabled = false;
-        });
+        beep(5000, 2, function () { });
     }
 
 
