@@ -137,6 +137,14 @@
                     <div class="text-5xl font-medium  mt-4" id="fetchCount">0</div>
                 </div>
 
+                <div class="p-6 bg-white shadow-md rounded-md text-center hidden" id="reserveTile">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2" id="reserveText">Got at</h3>
+                    <button id="btnAdd"
+                        class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
+                        Reserve Now
+                    </button>
+                </div>
+
                 <div class="p-6 bg-white shadow-md rounded-md text-left" id="storeInputTile">
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Select store</h3>
                     <span class="block mb-2">
@@ -158,7 +166,8 @@
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">iPhone Model watch list</h3>
 
                     <div class="flex-grow overflow-y-auto mb-4">
-                        <h3 class="text-lg font-semibold"> <span id="hint" class="text-blue-500 cursor-pointer hover:underline">How to find model number?</span>
+                        <h3 class="text-lg font-semibold"> <span id="hint"
+                                class="text-blue-500 cursor-pointer hover:underline">How to find model number?</span>
                         </h3>
                         <ul id="itemList" class="list-disc list-inside mt-2"></ul>
                     </div>
@@ -166,7 +175,8 @@
                     <div class="flex">
                         <input type="text" id="itemInput" class="border rounded-l p-2 flex-grow"
                             placeholder="iphone model number">
-                        <button id="btnAdd" class="bg-blue-500 text-white p-2 rounded-r hover:bg-blue-600">
+                        <button id="btnAdd"
+                            class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
                             Add
                         </button>
                     </div>
@@ -184,20 +194,20 @@
                 </div>
 
                 <div class="p-6 bg-white shadow-md rounded-md">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Test sound</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Test found</h3>
                     <button id="btnTest"
                         class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-500 dark:hover:bg-blue-400">
-                        Test Sound
+                        Mock
                     </button>
-                </div> 
+                </div>
             </div>
         </section>
 
-    <div id="gifSection" class=" bg-white p-6 rounded shadow-md mt-5">
-        <h3 class="text-lg font-semibold mb-4">How to find iPhone model number?</h3>
-        <img src="/image/how-to.png" alt="Hint GIF" class="w-full max-w-4xl">
-        <img src="/image/how-to.gif" alt="Hint GIF" class="w-full max-w-4xl">
-    </div>
+        <div id="gifSection" class=" bg-white p-6 rounded shadow-md mt-5">
+            <h3 class="text-lg font-semibold mb-4">How to find iPhone model number?</h3>
+            <img src="/image/howto.png" alt="Hint GIF" class="w-full max-w-4xl">
+            <img src="/image/howto.gif" alt="Hint GIF" class="w-full max-w-4xl">
+        </div>
 
 
     </main>
@@ -229,7 +239,7 @@
 
             var osc = ctx.createOscillator();
 
-           // osc.type = type;
+            // osc.type = type;
             osc.type = "sine";
 
             osc.connect(ctx.destination);
@@ -255,13 +265,13 @@
 
     $(document).ready(function () {
 
-        $('#hint').click(function() {
-                // Scroll to the GIF section
-                $('html, body').animate({
-                    scrollTop: $(document).height() // Scroll to the full document height
-                }, 1000);
-            });
-            
+        $('#hint').click(function () {
+            // Scroll to the GIF section
+            $('html, body').animate({
+                scrollTop: $(document).height() // Scroll to the full document height
+            }, 1000);
+        });
+
         $('#btnAdd').click(function () {
             const itemValue = $('#itemInput').val().trim();
             if (itemValue) {
@@ -271,21 +281,20 @@
             }
             SaveData();
         });
-            // Remove item from the list
-            $('#itemList').on('click', '.removeButton', function() {
-                const itemText = $(this).siblings('span').text(); // Get the text of the item
-                models = models.filter(item => item !== itemText); // Remove item from array
-                $(this).parent('li').remove();
-                SaveData();
-            });
+        // Remove item from the list
+        $('#itemList').on('click', '.removeButton', function () {
+            const itemText = $(this).siblings('span').text(); // Get the text of the item
+            models = models.filter(item => item !== itemText); // Remove item from array
+            $(this).parent('li').remove();
+            SaveData();
+        });
 
         $('#btnStart').click(function () {
 
-            if(stores.length == 0 || models.length == 0)
-        {
-            alert('Please select atleast one store and model number to began')
-            return;
-        }
+            if (stores.length == 0 || models.length == 0) {
+                alert('Please select atleast one store and model number to began')
+                return;
+            }
 
             let blue = "bg-blue-600 dark:bg-blue-500 hover:bg-blue-500 dark:hover:bg-blue-400"
             let red = "bg-red-600 dark:bg-red-500 hover:bg-red-500 dark:hover:bg-red-400"
@@ -306,11 +315,7 @@
         });
 
         $('#btnTest').click(function () {
-            var button = this;
-            button.disabled = true;
-            beep(1000, 2, function () {
-                button.disabled = false;
-            });
+            stockFound("Dubai Mall","iPhone 16 Pro")
         });
 
         $('#storeInputTile input[type="checkbox"]').click(function () {
@@ -372,7 +377,7 @@
     function updateItemList() {
         $('#itemList').empty(); // Clear current list
         models.forEach(function (item) {
-                    $('#itemList').append(`
+            $('#itemList').append(`
                         <li class="flex items-center justify-between mb-2">
                             <span>${item}</span>
                             <button class="removeButton text-red-500 hover:text-red-700">X</button>
@@ -401,14 +406,12 @@
 
                 incrementCount();
 
+                debugger
+
                 for (st = 0; st < stores.length; st++) {
                     for (md = 0; md < models.length; md++) {
                         if (data.stores[stores[st]][models[md]]?.availability.unlocked == true) {
-                            $('#btnReserve').show();
-                            //playSound(); // Play first time
-                            beep(5000, 2, function () {
-                                button.disabled = false;
-                            });
+                            stockFound(st, md);
                             break;
                         }
                     }
@@ -418,6 +421,20 @@
                 console.log(e);
                 $('#fetchCount').html("Error in fetch")
             });
+    }
+
+    function stockFound(st, md) {
+
+        const now = new Date();
+        const localTime = now.toLocaleTimeString(); // Just the time part
+        console.log(localTime);
+
+        $('#reserveTile').removeClass("hidden");
+        $('#reserveText').html(`Found One for ${md} at ${st} on ${localTime}`);
+        //playSound(); // Play first time
+        beep(5000, 2, function () {
+            button.disabled = false;
+        });
     }
 
 
